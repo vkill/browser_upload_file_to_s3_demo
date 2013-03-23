@@ -1,0 +1,71 @@
+<html>
+<head>
+  <title>ajax upload file to s3 with put</title>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $("#file").on('change', function(event) {
+      // //ajax get put url
+      // var $this, file;
+
+      // $this = $(this);
+      // file = $this[0].files[0];
+      // $.ajax({
+      //   type: 'post',
+      //   url: '/s3_files',
+      //   dataType: 'json',
+      //   data: {
+      //     s3_file: {
+      //       name: file.name,
+      //       size: file.size,
+      //       content_type: file.type
+      //     }
+      //   },
+      //   success: function(data) {
+      //     $("#form").data('s3-upload-url', data.s3_upload_url);
+      //   },
+      //   error: function(xhr, status, err) {
+      //     console.log('error');
+      //     console.log(xhr.responseText);
+      //   }
+      // });
+      var url;
+      url = "https://dev-playab-net.s3.amazonaws.com/tmp/file?AWSAccessKeyId=AKIAI6GLQRTI5FAZMNRA&Expires=1364064748&Signature=7TYtdwb%2BSVK%2FTwPIok%2FCuvWbYTw%3D";
+      $("#form").data('s3-upload-url', url);
+    });
+ 
+    $("#form").on('submit', function(event) {
+      event.preventDefault();
+
+      var $this, file
+      $this = $(this);
+      file = $("#file")[0].files[0];
+      $.ajax({
+        type: 'put',
+        url: $this.data('s3-upload-url'),
+        dataType: 'xml',
+        processData: false,
+        data: file,
+        headers: {
+          'Content-Type': file.type
+        },
+        success: function(data, status, xhr) {
+          console.log('success');
+          console.log(xhr.status);
+        },
+        error: function(xhr, status, err) {
+          console.log('error');
+          console.log(xhr.responseText);
+        }
+      });
+    });
+  });
+  </script>
+</head>
+<body>
+<form action="#" id="form">
+  <input type="file" id="file" />
+  <button type="submit">upload</button>
+</form>
+</body>
+</html>
