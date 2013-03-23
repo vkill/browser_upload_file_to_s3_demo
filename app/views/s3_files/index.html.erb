@@ -1,0 +1,33 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>s3_key</th>
+        <th>uploaded_at</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @s3_files.each do |s3_file| %>
+        <tr>
+          <td><%= s3_file.id %></td>
+          <td><%= s3_file.s3_key %></td>
+          <td><%= s3_file.uploaded_at %></td>
+          <td>
+            <%= link_to :download, [:download, s3_file] %>
+            <%= link_to :destroy, s3_file, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <form action="#" method="post" id="upload">
+    <input type="hidden" name="_method" value="put" />
+    <input type="file" />
+    <button type="submit">upload</button>
+  </form>
+</div>

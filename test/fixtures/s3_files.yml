@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  s3_key: MyString
+  name: MyString
+  size: 1
+  content_type: MyString
+
+two:
+  s3_key: MyString
+  name: MyString
+  size: 1
+  content_type: MyString
