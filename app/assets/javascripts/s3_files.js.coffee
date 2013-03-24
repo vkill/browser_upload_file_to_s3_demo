@@ -40,13 +40,14 @@ $(document).ready ->
       data: file
       headers:
         'Content-Type': file_input.data('s3-upload-content-type')
+        'Content-Disposition': "attachment; filename="+file.name
       success: (data, status, xhr) ->
         console.log 'success'
-        console.log xhr.statusCode
+        console.log xhr.status
         $this.attr('action', "/s3_files/"+$this.data('id')+"/uploaded")
         $this.off 'submit'
         $this.submit()
-        $this.reset()
+        $this.each -> @reset()
       error: (xhr, status, err) ->
         console.log 'error'
         console.log xhr.responseText

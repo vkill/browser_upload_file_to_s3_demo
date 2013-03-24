@@ -47,7 +47,8 @@
         processData: false,
         data: file,
         headers: {
-          'Content-Type': file.type
+          'Content-Type': file.type,
+          'Content-Disposition': "attachment; filename="+file.name
         },
         success: function(data, status, xhr) {
           console.log('success');
