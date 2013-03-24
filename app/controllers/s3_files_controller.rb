@@ -13,7 +13,7 @@ class S3FilesController < ApplicationController
   def create
     @s3_file = S3File.new(@attributes, as: :create)
     if @s3_file.save
-      url = S3Tools.object_url_for(@s3_file.s3_key, :put, headers: {'content-type' => @s3_file.content_type})
+      url = S3Tools.object_url_for(@s3_file.s3_key, :put, request_content_type: @s3_file.content_type)
       render json: {id: @s3_file.id, s3_upload_url: url, s3_upload_method: :put, s3_upload_content_type: @s3_file.content_type}, status: :created
     else
       render json: @s3_file.errors, status: :unprocessable_entity

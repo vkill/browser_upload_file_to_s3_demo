@@ -37,4 +37,5 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'aws-sdk'
+# gem 'aws-sdk', path: File.expand_path('../../aws-sdk-ruby', __FILE__)
+gem 'aws-sdk', github: 'vkill/aws-sdk-ruby', ref: '79d177d939033607ba180b92d7acd489fc615c30'

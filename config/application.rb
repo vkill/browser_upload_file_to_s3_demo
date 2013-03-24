@@ -59,10 +59,5 @@ module BrowserUploadFileToS3Demo
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    require 'gem_extesions/aws_s3_s3_object_extension'
-    config.after_initialize do
-      AWS::S3::S3Object.send :include, ::AWSS3S3ObjectExtension
-    end
-
   end
 end
